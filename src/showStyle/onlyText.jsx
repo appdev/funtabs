@@ -48,12 +48,13 @@ const OnlyText = memo((props) => {
 		rootMargin: `${window.innerHeight / 2}px`,
 	});
 
-	function renderComponent(Component, className, size) {
+	function renderComponent(Component, className) {
 		return (
 			<div
 				ref={ref}
-				className={`grid-item${size} ${className}`}
 				style={{
+					width: "100%",
+					height: "100%",
 					position: "relative",
 					pointerEvents: "all",
 				}}
@@ -88,13 +89,13 @@ const OnlyText = memo((props) => {
 	function howToShow() {
 		switch (item.type) {
 			case "link":
-				return renderComponent(LinkCard, "", 11);
+				return renderComponent(LinkCard, "");
 			case "timeProgress":
-				return renderComponent(TimeProgress, "", 11);
+				return renderComponent(TimeProgress, "");
 			case "markdown":
-				return renderComponent(Markdown, "", 11);
+				return renderComponent(Markdown, "");
 			case "localWeather":
-				return renderComponent(LocalWeather, "", 11);
+				return renderComponent(LocalWeather, "");
 			default:
 				return null;
 		}

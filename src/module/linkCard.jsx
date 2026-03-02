@@ -260,7 +260,6 @@ const LinkCard = (props) => {
 						onDragStart={(e) => {
 							e.preventDefault();
 						}}
-						className={`grid-item${item.size}`}
 						style={{
 							borderRadius: `${radius}px`,
 							padding: "10px",

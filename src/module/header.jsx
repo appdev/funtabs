@@ -33,6 +33,7 @@ import BackupData from "./backupData";
 import Donate from "./donate";
 import ResetData from "./resetData";
 import UpdateList from "./updateList";
+import UserAuth from "./userAuth";
 
 const Header = (props) => {
 	const {
@@ -471,6 +472,7 @@ const Header = (props) => {
 					size={4}
 					wrap
 				>
+					<UserAuth fontColor={fontColor} />
 					<Button
 						type="text"
 						style={{

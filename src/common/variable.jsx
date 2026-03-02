@@ -1,5 +1,5 @@
-const api = "https://api.funtabs.cn";
-// const api = "https://localhost:8081"; //测试地址
+// const api = "https://api.funtabs.cn";
+const api = "http://localhost:8080"; // 本地服务器
 
 const variable = {
 	login: api + "/api/login",

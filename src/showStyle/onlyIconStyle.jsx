@@ -54,12 +54,13 @@ const OnlyIconStyle = memo((props) => {
 		rootMargin: `${window.innerHeight / 2}px`,
 	});
 
-	function renderComponent(Component, className, size) {
+	function renderComponent(Component, className) {
 		return (
 			<div
 				ref={ref}
-				className={`grid-item${size} ${className}`}
 				style={{
+					width: "100%",
+					height: "100%",
 					position: "relative",
 					pointerEvents: "all",
 				}}
@@ -95,23 +96,23 @@ const OnlyIconStyle = memo((props) => {
 	function howToShow() {
 		switch (item.type) {
 			case "link":
-				return renderComponent(LinkCard, "", item.size || 11);
+				return renderComponent(LinkCard, "");
 			case "note":
-				return renderComponent(Note, "", 34);
+				return renderComponent(Note, "");
 			case "timeProgress":
-				return renderComponent(TimeProgress, "", 22);
+				return renderComponent(TimeProgress, "");
 			case "markdown":
-				return renderComponent(Markdown, "", 11);
+				return renderComponent(Markdown, "");
 			case "translatelite":
-				return renderComponent(Translate, "", 34);
+				return renderComponent(Translate, "");
 			case "localWeather":
-				return renderComponent(LocalWeather, "", 22);
+				return renderComponent(LocalWeather, "");
 			case "hotEventList":
-				return renderComponent(HotEventList, "", 34);
+				return renderComponent(HotEventList, "");
 			case "festivalRemind":
-				return renderComponent(FestivalRemind, "", 22);
+				return renderComponent(FestivalRemind, "");
 			case "article":
-				return renderComponent(Article, "", item.size || 11);
+				return renderComponent(Article, "");
 			default:
 				return null;
 		}

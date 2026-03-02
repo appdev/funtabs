@@ -57,7 +57,7 @@ const PhoneStyle = memo((props) => {
 	function renderComponent(
 		Component,
 		className,
-		size,
+		_size,
 		style,
 		widthNum,
 		heightNum
@@ -65,9 +65,9 @@ const PhoneStyle = memo((props) => {
 		return (
 			<div
 				ref={ref}
-				className={`grid-item${size} ${className}`}
 				style={{
-					margin: "0px 11px 22px 11px",
+					width: "100%",
+					height: "100%",
 					position: "relative",
 					pointerEvents: "all",
 					...style,
@@ -107,41 +107,40 @@ const PhoneStyle = memo((props) => {
 				return renderComponent(
 					LinkCard,
 					"",
-					item.size || 11,
+					null,
 					{
 						width: "100%",
 						height: "100%",
 						display: "flex",
 						flexDirection: "column",
-						margin: "0px",
 					},
 					widthNum,
 					heightNum
 				);
 			case "note":
-				return renderComponent(Note, "", 34, null, widthNum, heightNum - 22);
+				return renderComponent(Note, "", null, null, widthNum, heightNum - 22);
 			case "timeProgress":
 				return renderComponent(
 					TimeProgress,
 					"",
-					22,
+					null,
 					null,
 					widthNum - 22,
 					heightNum - 22
 				);
 			case "markdown":
-				return renderComponent(Markdown, "", 11, null, widthNum, heightNum);
+				return renderComponent(Markdown, "", null, null, widthNum, heightNum);
 			case "translatelite":
-				return renderComponent(Translate, "", 34, null, widthNum, heightNum);
+				return renderComponent(Translate, "", null, null, widthNum, heightNum);
 			case "localWeather":
-				return renderComponent(LocalWeather, "", 22, null, widthNum, heightNum);
+				return renderComponent(LocalWeather, "", null, null, widthNum, heightNum);
 			case "hotEventList":
-				return renderComponent(HotEventList, "", 34, null, widthNum, heightNum);
+				return renderComponent(HotEventList, "", null, null, widthNum, heightNum);
 			case "festivalRemind":
 				return renderComponent(
 					FestivalRemind,
 					"",
-					22,
+					null,
 					null,
 					widthNum,
 					heightNum
@@ -150,7 +149,7 @@ const PhoneStyle = memo((props) => {
 				return renderComponent(
 					Article,
 					"",
-					item.size || 11,
+					null,
 					null,
 					widthNum,
 					heightNum

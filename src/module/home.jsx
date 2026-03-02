@@ -34,6 +34,9 @@ import useDoubleClick from "use-double-click";
 import dispatchEventStorage from "../common/dispatchEventStroage";
 import "../common/funtabs.css";
 import "../index.css";
+import { post } from "../common/fetch";
+import getLocalData from "../common/getLocalData";
+import variable from "../common/variable";
 import { setDeviceType } from "../redux/slice/deviceType";
 import AddNewCard from "./addNewCard";
 import Bookmarks from "./bookmarks";
@@ -257,7 +260,7 @@ const Home = () => {
 		justifyContent: "center",
 		columnGap: `${gap}px`,
 		rowGap: `${gap}px`,
-		gridAutoFlow: "dense",
+		gridAutoFlow: "row",
 		gridAutoRows: `${heightNum}px`,
 		maxWidth: "100%",
 		padding: "8px",
@@ -326,7 +329,13 @@ const Home = () => {
 				saveData();
 				const token = window.localStorage.getItem("token");
 				if (token && autoCloudSync === true) {
+					// 先提示，再异步上传，避免阻塞 UI
 					message.success("保存成功");
+					getLocalData().then((data) => {
+						post(variable.saveData, { data: JSON.stringify(data) }, token).catch(
+							() => {}
+						);
+					});
 				} else {
 					message.success("本地保存成功");
 				}
@@ -407,39 +416,10 @@ const Home = () => {
 	}
 
 	const memoizedChangeWidth = useMemo(() => {
-		const cache = {};
-
 		return (e) => {
 			const index = newlinkList.findIndex((item) => item.key === e);
 			setNum(index);
 			tabs.current.slickGoTo(index, true);
-
-			if (cache[e]) {
-				// 从缓存中获取宽度
-				setGridWidth(cache[e]);
-			} else {
-				const gridContainerId = `#sortable${e}`;
-				const classSelector = "div[class^='grid-item']";
-				let classNum = 0;
-
-				const classList = document.querySelectorAll(
-					`${gridContainerId} > ${classSelector}`
-				);
-				const l = classList.length;
-
-				for (let j = 0; j < l; j++) {
-					const classWidth = parseInt(
-						classList[j].className.match(/\d+/)[0].slice(-1)
-					);
-					classNum += classWidth;
-				}
-
-				const result = widthNum * classNum + gap * classNum - gap;
-				setGridWidth(result);
-
-				// 将宽度存储到缓存中
-				cache[e] = result;
-			}
 		};
 		// eslint-disable-next-line
 	}, [newlinkList]);

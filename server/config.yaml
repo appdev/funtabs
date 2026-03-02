@@ -1,0 +1,26 @@
+server:
+  port: "8080"
+  # CORS 允许的来源，多个用逗号分隔，* 表示全部允许
+  origins: "*"
+
+db:
+  path: "./data/funtabs.db"
+
+jwt:
+  secret: "change-this-to-a-random-secret"
+  expire: 30  # token 有效期，单位：天
+
+storage:
+  # 存储类型：local（本地文件系统）或 s3（对象存储）
+  type: "local"
+  # 本地存储目录（type=local 时生效）
+  local_path: "./uploads"
+  # CDN 前缀，设置后文件 URL 会加上此前缀（可选）
+  cdn: ""
+  # S3/对象存储配置（type=s3 时生效）
+  s3:
+    endpoint: "https://s3.amazonaws.com"
+    region: "us-east-1"
+    bucket: "my-funtabs-bucket"
+    access_key: ""
+    secret_key: ""
